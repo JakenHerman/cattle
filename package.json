@@ -1,0 +1,24 @@
+{
+  "name": "cattle",
+  "author": "Jaken Herman <JakenHerman7@Gmail.com>",
+  "description": "Use Google Calendar through your terminal",
+  "keywords": [
+    "google",
+    "cattle",
+    "google calendar",
+    "calendar",
+    "command line",
+    "terminal"
+  ],
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jakenherman/cattle"
+  },
+  "dependencies": {
+    "googleapis": "^5.0.0"
+  },
+  "devDependencies": {},
+  "bin": {},
+  "scripts": {}
+}
