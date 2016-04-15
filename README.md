@@ -8,9 +8,6 @@
 
 cattle is an npm package that allows you to access your Google calendar through your terminal. Once the package is complete, you will be able to read events from your calendar in your terminal as well as add new events into it. After these features are complete, we will look to expand the package to include other calendar and to-do applications.
 
-**View complete docs on [bower.io](http://bower.io)**
-
-
 ## Install
 
 ```sh
