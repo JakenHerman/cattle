@@ -1,7 +1,5 @@
 # cattle - Google Calendar in your Terminal
 
-> cattle needs all the help it can get. Please fill [this form](https://docs.google.com/forms/d/17pDF5r10Qf76EUKF8fQCS35fnrlwqma2PGQrnCpOggw/viewform) if you think you can help.
-
 <img align="right" height="300" src="http://i.imgur.com/QRYe22d.jpg">
 
 ---
@@ -25,6 +23,5 @@ We welcome [contributions](https://github.com/jakenherman/cattle/graphs/contribu
 
 ## License
 
-Copyright (c) 2016 Jaken Herman and [other contributors](https://github.com/jakenherman/cattle/graphs/contributors)
-
+Made with 💖 by Jaken Herman and [other contributors](https://github.com/jakenherman/cattle/graphs/contributors)
 Licensed under the GNU GENERAL PUBLIC LICENSE
