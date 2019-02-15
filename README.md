@@ -18,6 +18,8 @@ This will not work yet, as the package has not been published - but this is the 
 
 We welcome [contributions](https://github.com/jakenherman/cattle/graphs/contributors) of all kinds from anyone.
 
+In order to get started contributing, visit the [calendar quickstart](https://developers.google.com/calendar/quickstart/nodejs) page from Google to get your `credentials.json` file to put in the root directory of the project. This way we don't have to push secret keys to the repo - don't worry, yours wont be pushed. `credentials.json` is in the `.gitignore`.
+
 * [Bug reports](https://github.com/JakenHerman/cattle/issues)
 * [Pull requests](https://github.com/JakenHerman/cattle/pulls)
 
