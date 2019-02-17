@@ -13,7 +13,7 @@ const TOKEN_PATH = 'token.json';
 fs.readFile('credentials.json', (err, content) => {
   if (err) return console.log('Error loading client secret file:', err);
   // Authorize a client with credentials, then call the Google Calendar API.
-  authorize(JSON.parse(content), listEvents);
+  authorize(JSON.parse(content), getUserRequest);
 });
 
 /**
@@ -46,11 +46,13 @@ function getAccessToken(oAuth2Client, callback) {
     access_type: 'offline',
     scope: SCOPES,
   });
-  console.log('Authorize this app by visiting this url:', authUrl);
+
   const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
   });
+
+  console.log('Authorize this app by visiting this url:', authUrl);
   rl.question('Enter the code from that page here: ', (code) => {
     rl.close();
     oAuth2Client.getToken(code, (err, token) => {
@@ -67,22 +69,46 @@ function getAccessToken(oAuth2Client, callback) {
 }
 
 /**
- * Lists the next 10 events on the user's primary calendar.
+ * Gets the users requested number of items
  * @param {google.auth.OAuth2} auth An authorized OAuth2 client.
  */
-function listEvents(auth) {
+function getUserRequest(auth){
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
+
+  rl.question('How many events would you like to list?', (eventNum) => {
+    rl.close();
+    if(isNumeric(eventNum)){
+      console.log(`Listing ${eventNum} events : `);
+      call_calendar(auth, eventNum);
+    } 
+    else {
+      console.log("Invalid Number, listing 3 by default.");
+      call_calendar(auth, 3);
+    }
+  });
+}
+
+/**
+ * Gets {n} items as provided by the user
+ * @param {google.auth.OAuth2} auth An authorized OAuth2 client.
+ * @param {number} n the number of events to log
+ */
+function call_calendar(auth, n){
   const calendar = google.calendar({version: 'v3', auth});
   calendar.events.list({
     calendarId: 'primary',
     timeMin: (new Date()).toISOString(),
-    maxResults: 10,
+    maxResults: n,
     singleEvents: true,
     orderBy: 'startTime',
   }, (err, res) => {
     if (err) return console.log('The API returned an error: ' + err);
     const events = res.data.items;
     if (events.length) {
-      console.log('Upcoming 10 events:');
+      console.log('Upcoming ' + n + ' events:');
       events.map((event, i) => {
         const start = event.start.dateTime || event.start.date;
         console.log(`${start} - ${event.summary}`);
@@ -91,4 +117,12 @@ function listEvents(auth) {
       console.log('No upcoming events found.');
     }
   });
+}
+
+/**
+ * Checks to make sure the user's input is numeric
+ * @param {number} n The number to check.
+ */
+function isNumeric(n) {
+  return !isNaN(parseFloat(n)) && isFinite(n);
 }
